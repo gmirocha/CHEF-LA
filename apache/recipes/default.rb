@@ -4,8 +4,14 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 #
-package "httpd" do
-	action :install
+if node["plataform"]=="ubuntu" 
+	execute "apt-get update -y" do
+	end
+end
+
+package "apache2" do
+	pkg=node["apache"]["package"]
+	package_name pkg 
 end
 
 node["apache"]["sites"].each do|sitename,data|
@@ -14,7 +20,8 @@ node["apache"]["sites"].each do|sitename,data|
 		mode "0755"
 		recursive true
 	end
-	template "/etc/httpd/conf.d/#{sitename}.conf" do
+	template_location=node["apache"]["template_location"]
+	template "template_location#{sitename}.conf" do
 		source "vhost.erb" 
 		mode "0644"
 		variables(
@@ -48,8 +55,9 @@ execute "rm /etc/httpd/conf.d/README" do
 	end
 end
 service "httpd" do
+	service_name node["apache"]["package"]
 	action [:enable, :start]
 end
 
-include_recipe "php::default"
+#include_recipe "php::default"
 
