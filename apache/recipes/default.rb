@@ -36,7 +36,8 @@ node["apache"]["sites"].each do|sitename,data|
 		mode "0644"
 		variables(
 			:site_title=> data["site_title"],
-			:comingsoon => "Coming Soon, karaio"
+			:comingsoon => "Coming Soon, karaio",
+			:author => node["author"]["name"]
 		)
 	end 
 #### Template index

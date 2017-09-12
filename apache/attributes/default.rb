@@ -10,3 +10,4 @@ default["apache"]["sites"]["gmirocha2b"]={"site_title"=>"Gmirocha2b logo vem","p
 default["apache"]["sites"]["gmirocha3"]={"site_title"=>"Gmirocha2 logo vem","port"=>80,"domain"=>"gmirocha3.mylabserver.com"}
 default["apache"]["sites"]["gmirocha3b"]={"site_title"=>"Gmirocha2b logo vem","port"=>80,"domain"=>"gmirocha3b.mylabserver.com"}
 
+default["author"]["name"]="gmirocha"
